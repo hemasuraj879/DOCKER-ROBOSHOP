@@ -25,44 +25,44 @@ services:
         target: /data/db
         type: volume 
 
-  # mysql:
-  #   build: 
-  #     context: ./MYSQL 
-  #     dockerfile: Dockerfile
-  #   image: surajk879/mysql:1.3 
-  #   container_name: mysql
-  #   networks:
-  #     - roboshop
-  #   volumes:
-  #     - source: mysql
-  #       target: /data/db
-  #       type: volume
+  mysql:
+    build: 
+      context: ./MYSQL 
+      dockerfile: Dockerfile
+    image: surajk879/mysql:1.3 
+    container_name: mysql
+    networks:
+      - roboshop
+    volumes:
+      - source: mysql
+        target: /data/db
+        type: volume
 
-  # rabbitmq:
-  #   build: 
-  #     context: ./RABBITMQ 
-  #     dockerfile: Dockerfile
-  #   image: surajk879/rabbitmq:1.3 
-  #   container_name: rabbitmq
-  #   networks:
-  #     - roboshop
-  #   volumes:
-  #     - source: rabbitmq
-  #       target: /data/db
-  #       type: volume
+  rabbitmq:
+    build: 
+      context: ./RABBITMQ 
+      dockerfile: Dockerfile
+    image: surajk879/rabbitmq:1.3 
+    container_name: rabbitmq
+    networks:
+      - roboshop
+    volumes:
+      - source: rabbitmq
+        target: /data/db
+        type: volume
 
-  # redis:
-  #   build: 
-  #     context: ./REDIS 
-  #     dockerfile: Dockerfile
-  #   image: surajk879/redis:1.3
-  #   container_name: redis
-  #   networks:
-  #     - roboshop
-  #   volumes:
-  #     - source: redis
-  #       target: /data/db
-  #       type: volume
+  redis:
+    build: 
+      context: ./REDIS 
+      dockerfile: Dockerfile
+    image: surajk879/redis:1.3
+    container_name: redis
+    networks:
+      - roboshop
+    volumes:
+      - source: redis
+        target: /data/db
+        type: volume
 
   catalogue:
     build: 
@@ -75,68 +75,68 @@ services:
     depends_on:
       - mongodb
 
-  # cart:
-  #   build:
-  #     context: ./CART 
-  #     dockerfile: Dockerfile
-  #   image: surajk879/cart:1.3
-  #   container_name: cart
-  #   networks:
-  #     - roboshop
-  #   depends_on:
-  #     - mongodb
-  #     - catalogue
+  cart:
+    build:
+      context: ./CART 
+      dockerfile: Dockerfile
+    image: surajk879/cart:1.3
+    container_name: cart
+    networks:
+      - roboshop
+    depends_on:
+      - mongodb
+      - catalogue
 
-  # user:
-  #   build: 
-  #     context: ./USER 
-  #     dockerfile: Dockerfile
-  #   image: surajk879/user:1.3
-  #   container_name: user
-  #   networks:
-  #     - roboshop
-  #   depends_on:
-  #     - redis
-  #     - mongodb
+  user:
+    build: 
+      context: ./USER 
+      dockerfile: Dockerfile
+    image: surajk879/user:1.3
+    container_name: user
+    networks:
+      - roboshop
+    depends_on:
+      - redis
+      - mongodb
     
-  # shipping:
-  #   build: 
-  #     context: ./SHIPPING  
-  #     dockerfile: Dockerfile
-  #   image: surajk879/shipping:1.3
-  #   container_name: shipping
-  #   networks:
-  #     - roboshop
-  #   depends_on:
-  #     - mysql
+  shipping:
+    build: 
+      context: ./SHIPPING  
+      dockerfile: Dockerfile
+    image: surajk879/shipping:1.3
+    container_name: shipping
+    networks:
+      - roboshop
+    depends_on:
+      - mysql
 
-  # payments:
-  #   build: 
-  #     context: ./PAYMENTS 
-  #     dockerfile: Dockerfile
-  #   image: surajk879/payments:1.3
-  #   container_name: payments
-  #   networks:
-  #     - roboshop
-  #   depends_on:
-  #     - rabbitmq
+  payments:
+    build: 
+      context: ./PAYMENTS 
+      dockerfile: Dockerfile
+    image: surajk879/payments:1.3
+    container_name: payments
+    networks:
+      - roboshop
+    depends_on:
+      - rabbitmq
 
-  # web:
-  #   build: 
-  #     context: ./WEB 
-  #     dockerfile: Dockerfile
-  #   image: surajk879/web:1.3
-  #   container_name: web
-  #   networks:
-  #     - roboshop
-  #   ports:
-  #     - "80:80"
-  #   depends_on:
-  #     - catalogue
-      # - cart
-      # - user
-      # - shipping
-      # - payments
+  web:
+    build: 
+      context: ./WEB 
+      dockerfile: Dockerfile
+    image: surajk879/web:1.3
+    container_name: web
+    networks:
+      - roboshop
+    ports:
+      - "80:80"
+    depends_on:
+      - catalogue
+      - cart
+      - user
+      - shipping
+      - payments
 
   
 
