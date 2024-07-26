@@ -1,15 +1,16 @@
+
+
+networks:
+  roboshop:
+    driver: bridge
+
+volumes:
+  mongodb:
+  mysql:
+  redis:
+  rabbitmq:
+
 services:
-
-  networks:
-    roboshop:
-      driver: bridge
-
-  volumes:
-    mongodb:
-    mysql:
-    redis:
-    rabbitmq:
-
 
   mongodb:
     image: surajk879/mongodb:1.3
