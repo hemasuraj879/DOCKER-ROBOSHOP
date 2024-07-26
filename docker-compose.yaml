@@ -6,6 +6,10 @@ services:
 
   volumes:
     mongodb:
+    mysql:
+    redis:
+    rabbitmq:
+
 
   mongodb:
     image: surajk879/mongodb:1.3
